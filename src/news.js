@@ -47,7 +47,7 @@ export default class News extends Component {
             <Container>
                 <Header style={styles.header}>
                     <Body>
-                        
+
                     </Body>
                 </Header>
 
@@ -56,7 +56,11 @@ export default class News extends Component {
                     keyExtractor={(item, index) => JSON.stringify(index)}
                     data={this.state.newsList}
                     renderItem={({ item, index }) => (
-                        
+                        <TouchableOpacity
+                            activeOpacity={1}
+                            onPress={() => {
+                                this.props.navigation.navigate("DETAILS", { news: item })
+                            }}>
                             <Card id={index} style={styles.cardNews}>
                                 <View style={styles.imageRow}>
                                     <Image source={item.urlToImage != null ? { uri: item.urlToImage } : undefined} style={{ width: 100, height: 100 }}>
@@ -74,6 +78,7 @@ export default class News extends Component {
 
                                 </View>
                             </Card>
+                        </TouchableOpacity>
                     )}
                 >
 
