@@ -16,7 +16,9 @@ export default class News extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            newsList: null,
+            newsList: [],
+            filteredNews: [],
+            searchText: '',
         }
     }
 
@@ -37,8 +39,17 @@ export default class News extends Component {
                     const articles = responseJson.articles
                     this.setState({
                         newsList: articles,
+                        filteredNews: articles,
                     })
                 })
+        })
+    }
+
+    filter = () => {
+        this.setState({
+            filteredNews: this.state.newsList.filter((news) => {
+                return news.title.toUpperCase().includes(this.state.searchText.toUpperCase())
+            })
         })
     }
 
@@ -47,14 +58,28 @@ export default class News extends Component {
             <Container>
                 <Header style={styles.header}>
                     <Body>
+                        <Item>
+                            <TextInput
+                                style={styles.searchBar}
+                                placeholder='search'
+                                autoCapitalize='none'
+                                onChangeText={async (value) => {
+                                    await this.setState({
+                                        searchText: value
+                                    })
+                                    this.filter()
+                                }}
+                            >
 
+                            </TextInput>
+                        </Item>
                     </Body>
                 </Header>
 
                 <FlatList
                     style={styles.list}
                     keyExtractor={(item, index) => JSON.stringify(index)}
-                    data={this.state.newsList}
+                    data={this.state.filteredNews}
                     renderItem={({ item, index }) => (
                         <TouchableOpacity
                             activeOpacity={1}
@@ -93,6 +118,10 @@ const styles = StyleSheet.create({
     header: {
         height: 50,
         backgroundColor: 'white'
+    },
+    searchBar: {
+        marginHorizontal: '5%',
+        width: '90%',
     },
     list: {
         paddingHorizontal: '2%',
