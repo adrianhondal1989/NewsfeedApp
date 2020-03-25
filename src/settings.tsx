@@ -13,12 +13,23 @@ import {
 
 import { Container, Content, Switch, Header, Left, Icon, Right, Body, Item, Card, ListItem, Radio } from 'native-base'
 
-export default class Settings extends Component {
-    constructor(props) {
+interface Props {
+    navigation: any,
+    i18n: any,
+    setLocale: (lang: string) => void
+}
+
+interface State {
+    english: boolean,
+    spanish: boolean
+}
+
+export default class Settings extends React.Component<Props, State> {
+    constructor(props: Props) {
         super(props)
         this.state = {
-            english: this.props.i18n.locale === 'en' ? true : false,
-            spanish: this.props.i18n.locale === 'es' ? true : false
+            english: props.i18n.locale === 'en' ? true : false,
+            spanish: props.i18n.locale === 'es' ? true : false
         }
     }
 

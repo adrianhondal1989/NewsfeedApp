@@ -18,8 +18,16 @@ import Settings from './settings'
 
 import i18n from './i18n'
 
-export default class Home extends Component {
-    constructor(props) {
+interface Props {
+    navigation: any
+}
+
+interface State {
+    i18n: any
+}
+
+export default class Home extends React.Component<Props, State> {
+    constructor(props: Props) {
         super(props)
         this.state={
             i18n: i18n

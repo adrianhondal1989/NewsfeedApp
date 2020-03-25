@@ -12,8 +12,20 @@ import {
 
 import { Container, Header, Body, Item, Card } from 'native-base'
 
-export default class News extends Component {
-    constructor(props) {
+interface Props {
+    navigation: any,
+    i18n: any,
+}
+
+interface State {
+    newsList: any[],
+    filteredNews: any[],
+    searchText: string,
+    refreshing: boolean,
+}
+
+export default class News extends React.Component<Props, State> {
+    constructor(props: Props) {
         super(props)
         this.state = {
             newsList: [],
@@ -41,7 +53,7 @@ export default class News extends Component {
                     this.setState({
                         newsList: articles,
                         filteredNews: articles,
-                        refreshing: false,
+                        refreshing: false
                     })
                 })
         })
@@ -90,15 +102,15 @@ export default class News extends Component {
                     keyExtractor={(item, index) => JSON.stringify(index)}
                     data={this.state.filteredNews}
                     refreshControl={<RefreshControl refreshing={this.state.refreshing} onRefresh={() => { this.onRefresh() }} />}
-                    renderItem={({ item, index }) => (
-                        <TouchableOpacity
+                    renderItem={({ item, index: number }) => (
+                        <TouchableOpacity 
                             activeOpacity={1}
                             onPress={() => {
                                 this.props.navigation.navigate("DETAILS", { news: item })
                             }}>
-                            <Card id={index} style={styles.cardNews}>
+                            <Card style={styles.cardNews}>
                                 <View style={styles.imageRow}>
-                                    <Image source={item.urlToImage != null ? { uri: item.urlToImage } : undefined} style={{ width: 100, height: 100 }}>
+                                    <Image source={{uri: item.urlToImage != null ? item.urlToImage : undefined}} style={{ width: 100, height: 100 }}>
 
                                     </Image>
                                 </View>

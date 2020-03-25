@@ -1,0 +1,11 @@
+{
+    "tabNavigation": {
+        "news": "Noticias",
+        "settings": "Ajustes"
+    },
+    "settings": {
+        "english": "Inglés",
+        "spanish": "Español"
+    },
+    "placeholderSearch": "buscar"
+}

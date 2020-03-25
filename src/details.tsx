@@ -8,11 +8,19 @@ import {
 
 import { Container, Content, Header, Left, Icon, Right } from 'native-base'
 
-export default class Details extends Component {
-    constructor(props) {
+interface Props {
+    navigation: any
+}
+
+interface State {
+    news: any
+}
+
+export default class Details extends React.Component<Props, State> {
+    constructor(props: Props) {
         super(props)
         this.state = {
-            news: this.props.navigation.state.params.news
+            news: props.navigation.state.params.news
         }
     }
 
@@ -31,7 +39,7 @@ export default class Details extends Component {
                 </Header>
                 <Content>
                     <View style={styles.imageView}>
-                        <Image source={this.state.news.urlToImage != null ? { uri: this.state.news.urlToImage } : undefined} style={{ height: 300, width: '100%' }}>
+                        <Image source={{uri: this.state.news.urlToImage != null ? this.state.news.urlToImage : undefined}} style={{ height: 300, width: '100%' }}>
 
                         </Image>
                     </View>
