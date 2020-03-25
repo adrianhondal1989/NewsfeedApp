@@ -19,6 +19,7 @@ export default class News extends Component {
             newsList: [],
             filteredNews: [],
             searchText: '',
+            refreshing: false,
         }
     }
 
@@ -40,6 +41,7 @@ export default class News extends Component {
                     this.setState({
                         newsList: articles,
                         filteredNews: articles,
+                        refreshing: false,
                     })
                 })
         })
@@ -51,6 +53,13 @@ export default class News extends Component {
                 return news.title.toUpperCase().includes(this.state.searchText.toUpperCase())
             })
         })
+    }
+
+    onRefresh = async () => {
+        this.setState({
+            refreshing: true
+        })
+        this.fetchNews()
     }
 
     render() {
@@ -80,6 +89,7 @@ export default class News extends Component {
                     style={styles.list}
                     keyExtractor={(item, index) => JSON.stringify(index)}
                     data={this.state.filteredNews}
+                    refreshControl={<RefreshControl refreshing={this.state.refreshing} onRefresh={() => { this.onRefresh() }} />}
                     renderItem={({ item, index }) => (
                         <TouchableOpacity
                             activeOpacity={1}
