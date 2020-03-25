@@ -17,8 +17,8 @@ export default class Settings extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            english: true,
-            spanish: false
+            english: this.props.i18n.locale === 'en' ? true : false,
+            spanish: this.props.i18n.locale === 'es' ? true : false
         }
     }
 
@@ -34,9 +34,10 @@ export default class Settings extends Component {
                             english: true,
                             spanish: false
                         })
+                        this.props.setLocale('en')
                     }}>
                         <Left>
-                            <Text>English</Text>
+                            <Text>{this.props.i18n.t('settings.english')}</Text>
                         </Left>
                         <Right>
                             <Radio selected={this.state.english} />
@@ -47,9 +48,10 @@ export default class Settings extends Component {
                             english: false,
                             spanish: true
                         })
+                        this.props.setLocale('es')
                     }}>
                         <Left>
-                            <Text>Spanish</Text>
+                            <Text>{this.props.i18n.t('settings.spanish')}</Text>
                         </Left>
                         <Right>
                             <Radio selected={this.state.spanish} />

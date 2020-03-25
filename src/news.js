@@ -70,7 +70,7 @@ export default class News extends Component {
                         <Item>
                             <TextInput
                                 style={styles.searchBar}
-                                placeholder='search'
+                                placeholder={this.props.i18n.t('placeholderSearch')}
                                 autoCapitalize='none'
                                 onChangeText={async (value) => {
                                     await this.setState({

@@ -1,0 +1,11 @@
+{
+    "tabNavigation": {
+        "news": "News",
+        "settings": "Settings"
+    },
+    "settings": {
+        "english": "English",
+        "spanish": "Spanish"
+    },
+    "placeholderSearch": "search"
+}

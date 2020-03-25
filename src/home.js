@@ -16,9 +16,14 @@ import { Container, Content, Header, Left, Icon, Right, Body, Item, Card, Tabs, 
 import News from './news'
 import Settings from './settings'
 
+import i18n from './i18n'
+
 export default class Home extends Component {
     constructor(props) {
         super(props)
+        this.state={
+            i18n: i18n
+        }
     }
 
     render() {
@@ -34,18 +39,26 @@ export default class Home extends Component {
                 >
                     <Tab heading={<TabHeading
                         style={{ height: '100%', backgroundColor: 'white' }}
-                    ><Text style={{fontWeight: 'bold'}}>News</Text></TabHeading>}>
+                    ><Text style={{fontWeight: 'bold'}}>{this.state.i18n.t('tabNavigation.news')}</Text></TabHeading>}>
                         <News
                             navigation={this.props.navigation}
+                            i18n={i18n}
                         >
 
                         </News>
                     </Tab>
                     <Tab heading={<TabHeading
                         style={{ height: '100%', backgroundColor: 'white'  }}
-                    ><Text style={{fontWeight: 'bold'}}>Settings</Text></TabHeading>}>
+                    ><Text style={{fontWeight: 'bold'}}>{this.state.i18n.t('tabNavigation.settings')}</Text></TabHeading>}>
                         <Settings
                             navigation={this.props.navigation}
+                            i18n={i18n}
+                            setLocale={(lang) => {
+                                i18n.locale = lang,
+                                this.setState({
+                                    i18n: i18n
+                                })
+                            }}
                         >
 
                         </Settings>
