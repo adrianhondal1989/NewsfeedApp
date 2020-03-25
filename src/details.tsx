@@ -8,12 +8,14 @@ import {
 
 import { Container, Content, Header, Left, Icon, Right } from 'native-base'
 
+import {NewsData} from './news'
+
 interface Props {
     navigation: any
 }
 
 interface State {
-    news: any
+    news: NewsData
 }
 
 export default class Details extends React.Component<Props, State> {

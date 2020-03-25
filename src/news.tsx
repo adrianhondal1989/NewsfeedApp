@@ -18,10 +18,24 @@ interface Props {
 }
 
 interface State {
-    newsList: any[],
-    filteredNews: any[],
+    newsList: NewsData[],
+    filteredNews: NewsData[],
     searchText: string,
     refreshing: boolean,
+}
+
+export interface NewsData {
+    source: {
+        id: string | null,
+        name: string
+    },
+    author: string | null,
+    title: string,
+    description: string | null,
+    url: string,
+    urlToImage: string | null,
+    publishedAt: string,
+    content: string | null
 }
 
 export default class News extends React.Component<Props, State> {
