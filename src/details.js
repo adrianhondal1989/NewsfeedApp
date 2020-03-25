@@ -23,7 +23,7 @@ export default class Details extends Component {
                     <Left>
                         <Icon name='arrow-back'
                             onPress={() => {
-                                this.props.navigation.navigate("NEWS")
+                                this.props.navigation.navigate("HOME")
                             }} />
                     </Left>
                     <Right></Right>

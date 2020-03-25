@@ -11,14 +11,16 @@ import {
 
 import { createSwitchNavigator, createAppContainer } from 'react-navigation'
 
+import Home from './home'
 import News from './news'
 import Details from './details'
 
 const Navigator = createSwitchNavigator({
+    "HOME": Home,
     "NEWS": News,
     "DETAILS": Details,
   }, {
-    initialRouteName: "NEWS",
+    initialRouteName: "HOME",
   })
 
 const MainNavigator = createAppContainer(Navigator);
