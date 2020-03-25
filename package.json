@@ -10,14 +10,16 @@
     "lint": "eslint ."
   },
   "dependencies": {
+    "@types/react": "^16.9.25",
+    "@types/react-native": "^0.61.23",
     "i18n-js": "3.5.1",
     "native-base": "2.13.12",
     "react": "16.9.0",
     "react-native": "0.61.5",
     "react-native-gesture-handler": "1.6.1",
-    "react-native-typescript-transformer": "1.2.13",
+    "react-native-typescript-transformer": "^1.2.13",
     "react-navigation": "4.3.2",
-    "typescript": "3.8.3"
+    "typescript": "^3.8.3"
   },
   "devDependencies": {
     "@babel/core": "7.8.7",
